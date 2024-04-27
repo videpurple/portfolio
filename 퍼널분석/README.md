@@ -1,5 +1,7 @@
-# 퍼널 분석을 통한 서비스 회원 가입 유도
+# [퍼널 분석을 통한 서비스 회원 가입 유도](https://github.com/videpurple/portfolio/blob/main/%ED%8D%BC%EB%84%90%EB%B6%84%EC%84%9D/project/%F0%9F%92%BBFunnel%20%EB%B6%84%EC%84%9D%EC%9D%84%20%ED%86%B5%ED%95%9C%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%ED%9A%8C%EC%9B%90%20%EA%B0%80%EC%9E%85%20%EC%9C%A0%EB%8F%84%20%EB%B0%A9%EC%95%88.pdf)
 ---
+(제목을 클릭하시면 상세 페이지로 넘어갑니다.)
+
 ## 요약
 **(1) 기본 정보**
 ```
