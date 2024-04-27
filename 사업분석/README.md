@@ -26,3 +26,5 @@
 ```
 
 **(4) 주요 액션**  
+
+![image](https://github.com/videpurple/portfolio/assets/158250961/24059df3-beec-409a-8559-b857cd645099)
