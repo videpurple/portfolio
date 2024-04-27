@@ -1,10 +1,5 @@
 # 🏬 E-commerce 리텐션 분석
 title: 🏬 E-commerce 리텐션 분석
-subtitle: 
-categories: 
-tags: 
-date: 2024-04-27 15:44:23 +0000
-last_modified_at: 2024-04-27 15:44:24 +0000
 ---
 
 작성자: 이보라
