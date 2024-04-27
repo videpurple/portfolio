@@ -1,5 +1,7 @@
-# 온라인 편집숍 리텐션 분석
+# [온라인 편집숍 리텐션 분석](https://github.com/videpurple/portfolio/blob/main/%EC%BD%94%ED%98%B8%ED%8A%B8%EB%B6%84%EC%84%9D/project/%F0%9F%8F%AC%20E-commerce%20%EB%A6%AC%ED%85%90%EC%85%98%20%EB%B6%84%EC%84%9D.pdf)
 ---
+(제목을 클릭하시면 상세 페이지로 이동합니다.)
+
 ## 요약
 **(1) 기본 정보**
 ```
