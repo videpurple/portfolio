@@ -5,7 +5,7 @@
 ### **그로스 해킹**
 #### - \[코호트 분석\] 온라인 편집숍 리텐션 분석
 ```코호트 분석, 리텐션 차트를 이용하여 지속적인 서비스 사용을 위한 방안을 모색하였습니다.```
-#### - \[퍼널 분석\] 퍼널 분석을 통한 서비스 회원 가입 유도
+#### - [\[퍼널 분석\] 퍼널 분석을 통한 서비스 회원 가입 유도](https://github.com/videpurple/portfolio/tree/main/%ED%8D%BC%EB%84%90%EB%B6%84%EC%84%9D)
 ```회원 가입 절차에 대한 퍼널 분석을 통해 신규 회원 가입자를 늘리기 위한 방안을 모색하였습니다.```
 ### **CRM(Customer Relationship Management)**
 #### - [\[RFM 분석\] 고객 세분화 분석을 통한 마케팅 제안](https://github.com/videpurple/portfolio/tree/main/RFM%EB%B6%84%EC%84%9D#%EA%B3%A0%EA%B0%9D-%EC%84%B8%EB%B6%84%ED%99%94-%EB%B6%84%EC%84%9D%EC%9D%84-%ED%86%B5%ED%95%9C-%EB%A7%88%EC%BC%80%ED%8C%85-%EC%A0%9C%EC%95%88)
