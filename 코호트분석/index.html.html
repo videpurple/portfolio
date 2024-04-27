@@ -1,0 +1,774 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>🏬 E-commerce 리텐션 분석</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="96580757-1898-4562-9c7c-224f6c7c6733" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?ixlib=rb-4.0.3&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 50%"/><h1 class="page-title">🏬 E-commerce 리텐션 분석</h1><p class="page-description"></p><table class="properties"><tbody><tr class="property-row property-row-person"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesPerson"><path d="M10.9536 7.90088C12.217 7.90088 13.2559 6.79468 13.2559 5.38525C13.2559 4.01514 12.2114 2.92017 10.9536 2.92017C9.70142 2.92017 8.65137 4.02637 8.65698 5.39087C8.6626 6.79468 9.69019 7.90088 10.9536 7.90088ZM4.4231 8.03003C5.52368 8.03003 6.42212 7.05859 6.42212 5.83447C6.42212 4.63843 5.51245 3.68945 4.4231 3.68945C3.33374 3.68945 2.41846 4.64966 2.41846 5.84009C2.42407 7.05859 3.32251 8.03003 4.4231 8.03003ZM1.37964 13.168H5.49561C4.87231 12.292 5.43384 10.6074 6.78711 9.51807C6.18628 9.14746 5.37769 8.87231 4.4231 8.87231C1.95239 8.87231 0.262207 10.6917 0.262207 12.1628C0.262207 12.7974 0.548584 13.168 1.37964 13.168ZM7.50024 13.168H14.407C15.4009 13.168 15.7322 12.8423 15.7322 12.2864C15.7322 10.8489 13.8679 8.88354 10.9536 8.88354C8.04492 8.88354 6.17505 10.8489 6.17505 12.2864C6.17505 12.8423 6.50635 13.168 7.50024 13.168Z"></path></svg></span>작성자</th><td><span class="user"><img src="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EC%2596%25BC%25EA%25B5%25B4%25EC%2595%2584%25EC%259D%25B4%25EC%25BD%2598.jpg" class="icon user-icon"/>이보라</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>태그</th><td><span class="selected-value select-value-color-green">리텐션분석</span><span class="selected-value select-value-color-brown">프로젝트</span></td></tr><tr class="property-row property-row-multi_select"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Skills</th><td><span class="selected-value select-value-color-red">Google Sheets</span><span class="selected-value select-value-color-blue">Mysql</span></td></tr><tr class="property-row property-row-date"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>기간</th><td><time>@2023년 7월 15일 → 2023년 7월 21일</time></td></tr><tr class="property-row property-row-text"><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>기여도</th><td>100%</td></tr></tbody></table></header><div class="page-body"><blockquote id="3c538820-9304-4256-b42b-986b592f0906" class="">목차</blockquote><nav id="3150b2c5-a254-4812-aee1-88f00dd409de" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d6ab2f95-e62f-4650-9faf-5df9d8f9fe94">1️⃣ 분석 목적</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2c43b766-d100-4a00-977b-727143f88872">1. 분석 가정 및 목적</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6597fa82-b347-425d-9f5e-78259094724f">2. 분석 방법</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f0285e36-12ed-4bac-89b6-8c44335a3ac6">리텐션 분석</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5552c396-1bda-43f9-88dc-275e3c669fc8">2️⃣ 분석 결과</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#378e4e80-febc-4db7-9723-79bdef42e0e8">1. 구매 주기</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#69f913d9-c125-47ae-bd6b-e1883ee9935e">2. 리텐션 분석</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#370b2033-516c-4b4b-935b-e009e61799bf">3️⃣ 제안</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#dd09351c-618a-44aa-8719-8a06df7f2819">4️⃣ 데이터 설명</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#54bc4476-39c8-43d6-8f65-3ed9745ca1ed">5️⃣ 회고</a></div></nav><p id="65a706b3-1356-4ed4-a41c-f7bc48a91748" class="">
+</p><h1 id="d6ab2f95-e62f-4650-9faf-5df9d8f9fe94" class="">1️⃣ 분석 목적</h1><h2 id="2c43b766-d100-4a00-977b-727143f88872" class="block-color-brown_background">1. 분석 가정 및 목적</h2><p id="f7fd4560-c7ab-4441-88c8-ff92de3c7321" class="">H사는 선물하기 좋은 제품부터 실생활에 유용한 가정 용품까지 다양한 제품을 판매하는 영국의 온라인 편집숍입니다. 2018년 12월 사업을 시작하여 현재 1년이 되었습니다. 그동안 수집한 데이터를 분석하여 고객들이 지속적으로 서비스를 잘 이용하고 있는지 확인하고, 개선할 점이 있다면 방안을 모색하고자 합니다.</p><h2 id="6597fa82-b347-425d-9f5e-78259094724f" class="block-color-brown_background">2. 분석 방법</h2><h3 id="f0285e36-12ed-4bac-89b6-8c44335a3ac6" class="">리텐션 분석</h3><ul id="aeb9ec5c-92a5-4efd-9963-a2271a1c346a" class="bulleted-list"><li style="list-style-type:disc">리텐션은 사용자가 우리 서비스의 핵심 가치를 얼마나 꾸준히 경험하는지 확인하는 지표입니다. 이 지표를 분석하기 위해서 두 가지 과정을 거치게 됩니다.<ul id="05b7e103-7509-43fe-aa43-18d43aa3e77c" class="bulleted-list"><li style="list-style-type:circle"><strong>코호트 분석</strong> : 공통적인 특성에 따라 여러 집단으로 분류한 사용자 그룹을 코호트라고 하고 리텐션 분석에서는 주로 날짜를 기준으로 분류하여 살펴봅니다.</li></ul><ul id="ccb8416b-bef0-4e6d-90b6-f72ae4201cf9" class="bulleted-list"><li style="list-style-type:circle"><strong>리텐션</strong> <strong>차트</strong> 작성 : 앞서 실행한 코호트 분석에 따라 리텐션이 어떻게 움직이는지 시각화하는 작업입니다. </li></ul></li></ul><p id="309875c7-df6d-4f1c-ab54-a4d5be33ea22" class="">
+</p><h1 id="5552c396-1bda-43f9-88dc-275e3c669fc8" class="">2️⃣ 분석 결과</h1><h2 id="378e4e80-febc-4db7-9723-79bdef42e0e8" class="block-color-brown_background">1. 구매 주기</h2><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="9fd527a8-1340-48d6-ba9f-f0992789b0f8"><div style="font-size:1.5em"><span class="icon">🔖</span></div><div style="width:100%">우리 서비스의 구매 주기 중앙값은 <strong>57일</strong> 입니다.</div></figure><p id="15d30db3-ca15-46e8-b158-d599838fbeb3" class="">✔️ 분석 대상 :  최초 구매일 이후 1일이 지난 시점부터 구매 기록이 있는 고객 (전체 고객의 약 66%)</p><p id="db63a508-0fde-472b-b0b4-18908da78199" class="">✔️ 구매 주기 = (마지막 구매일 - 첫 구매일) / (구매 횟수 - 1)</p><div id="56de0060-201c-4151-b2f8-40fd7d45f1ae" class="column-list"><div id="aa7bfb63-ad84-4e2f-9f09-edf519867f6b" style="width:50%" class="column"><figure id="9fc5f85a-edfa-438c-8ee1-c6acc6085a8a" class="image"><a href="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EA%25B5%25AC%25EB%25A7%25A4_%25EC%25A3%25BC%25EA%25B8%25B0%25EC%2597%2590_%25EB%2594%25B0%25EB%25A5%25B8_%25EA%25B3%25A0%25EA%25B0%259D_%25EC%2588%2598.png"><img style="width:600px" src="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EA%25B5%25AC%25EB%25A7%25A4_%25EC%25A3%25BC%25EA%25B8%25B0%25EC%2597%2590_%25EB%2594%25B0%25EB%25A5%25B8_%25EA%25B3%25A0%25EA%25B0%259D_%25EC%2588%2598.png"/></a></figure></div><div id="3b1ac217-3b2c-40f1-ab3a-5ee1dd44ce90" style="width:50%" class="column"><figure id="6dce4596-6a36-4ba8-b825-1de6982f8d2a" class="image"><a href="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EA%25B5%25AC%25EB%25A7%25A4_%25EC%25A3%25BC%25EA%25B8%25B0%25EC%2597%2590_%25EB%2594%25B0%25EB%25A5%25B8_%25EA%25B3%25A0%25EA%25B0%259D_%25EB%25B9%2584%25EC%259C%25A8.png"><img style="width:600px" src="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EA%25B5%25AC%25EB%25A7%25A4_%25EC%25A3%25BC%25EA%25B8%25B0%25EC%2597%2590_%25EB%2594%25B0%25EB%25A5%25B8_%25EA%25B3%25A0%25EA%25B0%259D_%25EB%25B9%2584%25EC%259C%25A8.png"/></a></figure></div></div><ul id="6f628e60-97c4-4d28-81e7-132e1cf2b841" class="bulleted-list"><li style="list-style-type:disc">분석 대상 고객 중 절반 이상의 구매 주기가 1일 ~ 60일 사이인 것을 알 수 있습니다.</li></ul><ul id="ed0dc1d0-70a5-4f79-b150-1e73f51cfc4c" class="bulleted-list"><li style="list-style-type:disc">평균 구매 주기는 78.4일, 구매 주기 중앙값은 57일 입니다.</li></ul><ul id="7b03a4d0-0bc7-43a0-bb7a-3ef047dd3db8" class="bulleted-list"><li style="list-style-type:disc">다양한 용도의 제품을 판매하므로 구매 주기가 매우 다양하게 분포합니다. 양극 값의 영향을 적게 받기 위해 리텐션 범위 기준으로 구매 주기 <strong>중앙값을 채택</strong>하게 되었습니다.</li></ul><ul id="11d7c15d-453d-462a-999a-c1122ec8e4ce" class="toggle"><li><details open=""><summary>SQL 쿼리</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="82eb870b-7f60-4e08-9c4a-8f72d149c3f1" class="code"><code class="language-SQL">-- 구매 주기별 고객 수
+WITH cycle AS (
+	SELECT ROUND(DATEDIFF(last_order_date, first_order_date) / (cnt_orders - 1), 0) AS purchase_cycle 
+		 , CustomerId
+	FROM customer_stats
+	WHERE cnt_orders &gt;= 2
+	GROUP BY purchase_cycle, CustomerId HAVING purchase_cycle &gt; 0
+	ORDER BY purchase_cycle
+)
+SELECT COUNT(DISTINCT CASE WHEN purchase_cycle BETWEEN 1 AND 60 THEN CustomerId END) AS &#x27;1~60&#x27;
+	   , COUNT(DISTINCT CASE WHEN purchase_cycle BETWEEN 61 AND 120 THEN CustomerId END) AS &#x27;61~120&#x27;
+     , COUNT(DISTINCT CASE WHEN purchase_cycle BETWEEN 121 AND 180 THEN CustomerId END) AS &#x27;121~180&#x27;
+     , COUNT(DISTINCT CASE WHEN purchase_cycle BETWEEN 181 AND 240 THEN CustomerId END) AS &#x27;181~240&#x27;
+     , COUNT(DISTINCT CASE WHEN purchase_cycle BETWEEN 241 AND 300 THEN CustomerId END) AS &#x27;241~300&#x27;
+     , COUNT(DISTINCT CASE WHEN purchase_cycle BETWEEN 301 AND 360 THEN CustomerId END) AS &#x27;301~360&#x27;
+     , COUNT(DISTINCT CASE WHEN purchase_cycle &gt; 360 THEN CustomerId END) AS &#x27;360~&#x27;
+FROM cycle;
+
+-- 구매주기 평균 및 중앙값은 구글 시트를 이용하였습니다.</code></pre></details></li></ul><p id="e7a21179-80ce-49d5-ae91-b287d553d9e9" class="">
+</p><h2 id="69f913d9-c125-47ae-bd6b-e1883ee9935e" class="block-color-brown_background">2. 리텐션 분석</h2><blockquote id="e27a8c06-2dd4-45ac-9241-a7df963a1e24" class="">서비스의 이용 주기가 긴 편이므로 기간을 묶어서 분석하는 <strong>범위 리텐션</strong>을 이용하였습니다. <br/>기간을 묶는 기준은 구매 주기 중앙값(57)일을 참고하여 <br/><strong>2개월(60일)</strong>로 묶었습니다. <br/>각 달의 Month 0은 해당 월에 첫 구매한 고객 수를 나타냅니다.<br/></blockquote><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="fef61221-9b45-4f43-8c8d-09e8d12c4b25"><div style="font-size:1.5em"><span class="icon">🔖</span></div><div style="width:100%">2018년 12월에 비해 2019년 1월에 첫 구매한 고객 수가 급격하게 감소하였습니다. 2019년 11월 첫 구매 고객 수는 2018년 12월과 비교하여 <strong>약 72% 감소</strong>하였습니다.<br/>2019년 8월에 가장 낮은 첫 구매 고객 수(173명)를 달성했지만 바로 다음 달에 첫 구매 고객 수가 <br/><strong>8월에 비해 63% 상승</strong>했습니다. </div></figure><figure id="ae7a43e4-3487-40ed-973b-11bf923870de" class="image"><a href="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/Untitled.png"><img style="width:677px" src="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/Untitled.png"/></a></figure><ul id="65ce05ce-d690-4623-9635-16998a17a1c6" class="bulleted-list"><li style="list-style-type:disc">2019년 8월에 비해 9월의 첫 구매 고객 수가 높아진 이유는 9월이 신학기 준비 시즌으로 이 시즌에 주로 쇼핑이 이루어지는 시기이기 때문입니다.</li></ul><ul id="065c4c9c-8e21-471e-9aa0-373c0d8ae1b4" class="bulleted-list"><li style="list-style-type:disc">9월 이후 첫 구매 고객 수가 어느 정도 유지 되는 것은 10월 핼러윈, 11월 블랙 프라이데이와 같은 큰 쇼핑 이벤트가 존재합니다. 더불어 10월부터 길거리에서 크리스마스 장식을 볼 수 있을 정도로 크리스마스 준비를 미리 하는 문화도 영향을 준 것으로 보입니다. 실제로 10월, 11월 구매 목록을 보면 크리스마스 관련 용품의 구매가 이루어지고 있음을 알 수 있습니다.<div id="aaae9fe5-bf1f-4f61-9e67-cfd2349bb671" class="column-list"><div id="abeb9a6a-9b1c-4ddf-919a-34dfbf95481e" style="width:100%" class="column"><ul id="06ab0a50-e4c6-47fd-b68f-8e7275b0dd43" class="toggle"><li><details open=""><summary>10월 첫 구매자들 구매 제품 목록<br/>(총 구매 수 상위 10개)<br/></summary><table id="4da9e44b-ac2e-4140-b463-4ac9d35e8a54" class="simple-table"><tbody><tr id="726447e7-2c70-4164-9f97-743bbfa33f90"><td id="=obO" class="">제품명</td><td id="~s&lt;M" class="">총 구매 수 </td></tr><tr id="512e3a66-800c-431f-91cd-80be0181e05b"><td id="=obO" class="">Popcorn Holder</td><td id="~s&lt;M" class="">945</td></tr><tr id="b7ea8715-7684-4f0f-99c1-762839e67e50"><td id="=obO" class="">Wooden Heart Christmas Scandinavian</td><td id="~s&lt;M" class="">805</td></tr><tr id="cfcea669-77f5-42b2-8292-ecc88896619a"><td id="=obO" class="">World War 2 Gliders Asstd Designs</td><td id="~s&lt;M" class="">738</td></tr><tr id="72484ae1-a671-45d1-888d-86e33df51142"><td id="=obO" class="">Assorted Colours Silk Fan</td><td id="~s&lt;M" class="">704</td></tr><tr id="4a10bdc8-b4f4-47ab-a651-9d0ec05de516"><td id="=obO" class="">Paper Chain Kit 50&#x27;S Christmas</td><td id="~s&lt;M" class="">576</td></tr><tr id="d66c308a-5f06-4de8-aca8-04769d3fbc10"><td id="=obO" class="">Assorted Colour Bird Ornament</td><td id="~s&lt;M" class="">567</td></tr><tr id="0719e6ee-33ce-4e22-bfc4-865ef6ee9c71"><td id="=obO" class="">Vintage Snap Cards</td><td id="~s&lt;M" class="">530</td></tr><tr id="2d2b3bf9-140b-4cf1-9061-3a831f1d1093"><td id="=obO" class="">Christmas Hanging Star With Bell</td><td id="~s&lt;M" class="">473</td></tr><tr id="5744bcf4-bd78-4c2a-9e70-78cd21071551"><td id="=obO" class="">Hanging Heart With Bell</td><td id="~s&lt;M" class="">442</td></tr><tr id="4e060833-89c5-4c96-8f7b-764224363723"><td id="=obO" class="">60 Cake Cases Vintage Christmas</td><td id="~s&lt;M" class="">435</td></tr></tbody></table></details></li></ul></div><div id="888e3d28-22ae-4ca5-ac1b-b3b1f9a2abca" style="width:100%" class="column"><ul id="78f98de0-06af-484b-a1de-8beb77be4ffb" class="toggle"><li><details open=""><summary>11월 첫 구매자들 구매 제품 목록<br/>(총 구매 수 상위 10개)<br/></summary><table id="fd521d5f-03e5-436d-a740-ae0f5c5fbead" class="simple-table"><tbody><tr id="b6182e9f-aeaa-4f6e-b638-c1b379e7e060"><td id="=obO" class="">제품명</td><td id="~s&lt;M" class="">총 구매 수 </td></tr><tr id="22c8358f-6af1-4c73-b58d-7e14a5835d86"><td id="=obO" class="">Asstd Design 3d<br/>  Paper Stickers<br/></td><td id="~s&lt;M" class="">12544</td></tr><tr id="4368c41c-0dba-487a-97bf-bc7cbc4ab670"><td id="=obO" class="">Popcorn Holder</td><td id="~s&lt;M" class="">3373</td></tr><tr id="415c17ac-b185-4ca3-b2c3-e5ec744ffa2c"><td id="=obO" class="">Rabbit Night Light</td><td id="~s&lt;M" class="">1645</td></tr><tr id="4d80dda3-2bf5-4de5-ad06-b127dc2eeb36"><td id="=obO" class="">Paper Chain Kit 50&#x27;S Christmas</td><td id="~s&lt;M" class="">1538</td></tr><tr id="73fd3587-2bf0-4b07-a5b6-aaf9d4b2192a"><td id="=obO" class="">Jumbo Bag Red Retrospot</td><td id="~s&lt;M" class="">1170</td></tr><tr id="c31a76d7-57a4-44c2-b731-d790e0b1cdd9"><td id="=obO" class="">Jumbo Bag 50&#x27;S Christmas</td><td id="~s&lt;M" class="">1103</td></tr><tr id="dfdfdf38-103b-4974-8e43-976224686668"><td id="=obO" class="">Traditional Pick Up Sticks Game</td><td id="~s&lt;M" class="">978</td></tr><tr id="e8d752c2-d6b7-4cb7-b0a2-774eb96d8271"><td id="=obO" class="">Wooden Star Christmas Scandinavian</td><td id="~s&lt;M" class="">934</td></tr><tr id="c3b09ad0-2107-4111-ab83-719abe21665d"><td id="=obO" class="">Doughnut Lip Gloss</td><td id="~s&lt;M" class="">886</td></tr><tr id="1deea79c-27cb-47ae-a591-03cab729b284"><td id="=obO" class="">Traditional Naughts &amp; Crosses</td><td id="~s&lt;M" class="">860</td></tr></tbody></table></details></li></ul></div></div><ul id="720c3052-5f40-42f6-9991-9cad79daca90" class="toggle"><li><details open=""><summary>구매 제품 목록 SQL 쿼리</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7db9ed85-2179-44d3-a9a9-79cfca8239ae" class="code"><code class="language-SQL">-- 10월 첫구매자 구매 제품 확인
+WITH records_join AS (
+SELECT r.CustomerId
+		 , r.OrderDate
+     , DATE_FORMAT(c.first_order_date, &#x27;%Y-%m-01&#x27;) first_order_month
+     , r.ProductName
+     , r.Price
+     , r.Quantity
+     , r.Country
+FROM records r
+	 INNER JOIN customer_stats c ON r.CustomerId = c.CustomerId
+)
+SELECT DISTINCT ProductName
+		 , SUM(Quantity) cnt_product
+FROM records_join
+WHERE first_order_month = &#x27;2019-10-01&#x27;
+AND OrderDate BETWEEN &#x27;2019-10-01&#x27; AND &#x27;2019-10-31&#x27;
+GROUP BY ProductName
+ORDER BY cnt_product DESC;
+
+-- 11월 첫구매자 구매 제품 확인
+WITH records_join AS (
+SELECT r.CustomerId
+		 , r.OrderDate
+     , DATE_FORMAT(c.first_order_date, &#x27;%Y-%m-01&#x27;) first_order_month
+     , r.ProductName
+     , r.Price
+     , r.Quantity
+     , r.Country
+FROM records r
+	 INNER JOIN customer_stats c ON r.CustomerId = c.CustomerId
+)
+SELECT DISTINCT ProductName
+		 , SUM(Quantity) cnt_product
+FROM records_join
+WHERE first_order_month = &#x27;2019-11-01&#x27;
+AND OrderDate BETWEEN &#x27;2019-11-01&#x27; AND &#x27;2019-11-30&#x27;
+GROUP BY ProductName
+ORDER BY cnt_product DESC;</code></pre></details></li></ul></li></ul><ul id="da1b1f21-30df-4cde-a48c-6f2957a0ce39" class="toggle"><li><details open=""><summary>2019 영국 주요 쇼핑 시즌 - <a href="https://m.post.naver.com/viewer/postView.naver?volumeNo=17526030&amp;memberNo=38390862">참고</a></summary><table id="ebaea3a1-2712-469f-b782-7644f0dc218a" class="simple-table"><thead class="simple-table-header"><tr id="20479e22-e258-48ed-b495-69eea4693bd6"><th id="H[v&lt;" class="simple-table-header-color simple-table-header">기념일</th><th id="khK{" class="simple-table-header-color simple-table-header">날짜</th><th id="Fb`}" class="simple-table-header-color simple-table-header" style="width:345px">설명</th></tr></thead><tbody><tr id="07cd861e-d828-4bb9-be97-7a8f34e4f996"><td id="H[v&lt;" class="">새해<br/>(New Year)<br/></td><td id="khK{" class="">1월 1일</td><td id="Fb`}" class="" style="width:345px">새해가 되면 한 해의 계획을 세우고, 가족과 친구들에게 연하장과 선물을 보내며 인사를 합니다.<br/>인기 상품 : 행운과 관련된 아이템, 개인 건강 용품, 인사 카드 등<br/></td></tr><tr id="072b2d27-a4eb-402e-9b15-e898c2131db6"><td id="H[v&lt;" class="">발렌타인 데이<br/>(Valentine&#x27;s Day)<br/></td><td id="khK{" class="">2월 14일</td><td id="Fb`}" class="" style="width:345px">전통적으로 연인들이 초콜릿을 주고 받는 날이었지만 이제는 가족, 친구, 반려동물과 같이 사랑하는 이들을 위해 선물을 준비합니다.<br/>인기 상품 : 초콜릿, 카드, 주얼리 등<br/></td></tr><tr id="9314b606-09b4-4b63-88b5-152292c9d277"><td id="H[v&lt;" class="">성 패트릭 데이<br/>(ST. Patricks &#x27;s Day)<br/></td><td id="khK{" class="">3월 17일</td><td id="Fb`}" class="" style="width:345px">아일랜드의 수호성인인 성 파트리치오를 기념하는 날로 녹색 의상을 입고, 녹색 색상의 음식을 먹습니다.<br/>인기 상품 : 티셔츠, 모자, 파티 용품, 아일랜드 상징물 등<br/></td></tr><tr id="fdd85857-e9fc-400b-9e15-81efa530b32e"><td id="H[v&lt;" class="">어머니의 날<br/>(Mother&#x27;s Day)<br/></td><td id="khK{" class="">영국의 사순절 중 넷째 일요일<br/>(2019년에는 3월 31일)<br/></td><td id="Fb`}" class="" style="width:345px">어머니 또는 어머니처럼 모시는 어르신께 카드나 선물을 보내는 날입니다.<br/>인기 상품 : 주얼리, 꽃, 간식 등 <br/></td></tr><tr id="2437dfcf-c300-4467-b784-aeb01d22bab9"><td id="H[v&lt;" class="">부활절 연휴<br/>(Easter Holiday)<br/></td><td id="khK{" class="">4월 19일 ~ 22일</td><td id="Fb`}" class="" style="width:345px">영국에서 크리스마스 다음으로 가장 큰 명절로 예수가 십자가에 못 박힌 날이 Good Friday부터 Easter Monday까지 연휴 기간입니다.<br/>인기 상품 : 플라스틱 달걀, 작은 선물, 장식품, 종교 상품 등<br/></td></tr><tr id="56557b73-86cd-42ea-92e9-f241f408e826"><td id="H[v&lt;" class="">아버지의 날<br/>(Father&#x27;s Day)<br/></td><td id="khK{" class="">6월의 세번째 일요일<br/>(2019년에는 6월 16일)<br/></td><td id="Fb`}" class="" style="width:345px">아버지 또는 아버지처럼 모시는 어르신께 카드나 선물을 보내는 날입니다.<br/>인기 상품 : 넥타이, 도서, 양말, 향수, 스포츠 용품 등<br/></td></tr><tr id="0138a81f-94d6-4d8e-b456-e3e082804f3a"><td id="H[v&lt;" class="">새 학기<br/>(Back to School)<br/></td><td id="khK{" class="">9월</td><td id="Fb`}" class="" style="width:345px">학생들이 신학기를 준비하는 시즌입니다.<br/>인기 상품 : 책, 문구류, 필기구 등<br/></td></tr><tr id="cb757fb6-2963-4811-92da-0ec9ab197690"><td id="H[v&lt;" class="">핼러윈<br/>(Halloween)<br/></td><td id="khK{" class="">10월 31일</td><td id="Fb`}" class="" style="width:345px">어린이들에게 사탕을 주고 변장 파티에 참석하거나 유럽의 집을 방문합니다.<br/>인기 상품 : 핼러윈 의상, 메이크업 및 액세서리 등<br/></td></tr><tr id="f6cd055c-f628-48fb-8ece-993f8da99c02"><td id="H[v&lt;" class="">블랙 프라이데이<br/>(Black Friday)<br/></td><td id="khK{" class="">11월 29일</td><td id="Fb`}" class="" style="width:345px">크리스마스 쇼핑 시즌의 시작을 알리는 날로 파격적인 할인 헤택을 제공합니다.<br/>인기 상품 : 주로 고가 제품<br/></td></tr><tr id="70dc682a-fab4-49f5-a953-eb7d8c4ef7de"><td id="H[v&lt;" class="">사이버 먼데이<br/>(Cyber Monday)<br/></td><td id="khK{" class="">12월 2일</td><td id="Fb`}" class="" style="width:345px">추수감사절 다음 주의 첫 번째 월요일로, 온라인 쇼핑몰이 할인 프로모션을 진행합니다.<br/>인기 상품 : 주로 고가 제품<br/></td></tr><tr id="6a40c3b4-37b4-42e5-9a96-11966f59f82c"><td id="H[v&lt;" class="">크리스마스<br/>(Christmas)<br/></td><td id="khK{" class="">12월 25일</td><td id="Fb`}" class="" style="width:345px">영국에서 가장 중요한 날입니다. 가족, 친지와 함께 집을 장식하고 선물을 교환하며 함께 식사를 합니다.<br/>인기 상품 : 선물과 관련된 제품, 크리스마스 장식, 인사 카드, 양초, 달력, 조명 등<br/></td></tr><tr id="59c492f2-6c19-4af5-99e2-56ba2a9a47d6"><td id="H[v&lt;" class="">박싱데이<br/>(Boxing Day)<br/></td><td id="khK{" class="">12월 26일</td><td id="Fb`}" class="" style="width:345px">국경일이자 영국의 연례 할인 행사가 시작되는 날입니다. 크리스마스부터 신년 전야까지 진행됩니다.<br/>인기 상품 : 할인 표시된 모든 상품, 겨울 의류, 전자 제품, 신발, 향수, 시계, 귀금속 등<br/></td></tr></tbody></table></details></li></ul><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="2d1d167a-cda4-4ce8-a838-a408eff7b951"><div style="font-size:1.5em"><span class="icon">🔖</span></div><div style="width:100%">Month 2 평균 유지율이 33.8%로, 업종 대부분의 8주 후 평균 유지율이 20% 미만<a href="https://www.notion.so/E-commerce-96580757189845629c7c224f6c7c6733?pvs=21">¹⁾</a>인 것에 반해 <strong>높은 유지율</strong>을 보이고 있습니다.<br/>Month 2에서 <br/><strong>유지율이 가장 낮고</strong>, 중간에 잠시 하락 혹은 유지하는 구간이 존재하지만 대체적으로 유지율이 증가하는 추세를 볼 수 있습니다.<br/>→ Month2 유지율을 높일 수 있는 방안을 찾아야 합니다.<br/></div></figure><figure id="eb5fccbe-14c9-42e0-9973-6ea3f53b089e" class="image"><a href="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/Untitled%201.png"><img style="width:682px" src="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/Untitled%201.png"/></a></figure><figure id="6cab23a0-089e-45f6-8062-46c3897183d6" class="image"><a href="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EA%25B8%25B0%25EA%25B0%2584%25EC%2597%2590_%25EB%2594%25B0%25EB%25A5%25B8_%25EC%259C%25A0%25EC%25A7%2580%25EC%259C%25A8_%25EB%25B3%2580%25ED%2599%2594.png"><img style="width:600px" src="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EA%25B8%25B0%25EA%25B0%2584%25EC%2597%2590_%25EB%2594%25B0%25EB%25A5%25B8_%25EC%259C%25A0%25EC%25A7%2580%25EC%259C%25A8_%25EB%25B3%2580%25ED%2599%2594.png"/></a></figure><figure class="block-color-default callout" style="white-space:pre-wrap;display:flex" id="43b29b16-9f9c-449d-b343-ae9fc25121d6"><div style="font-size:1.5em"><span class="icon">🔖</span></div><div style="width:100%">각 코호트에서 첫 구매 이후 8월에 도달했을 때 유지율이 낮아지는 구간이 존재합니다. 8월에 세일 이벤트나 기념 이벤트가 존재하지 않아 감소한 것으로 보입니다.</div></figure><figure id="2e0d3e7a-f51e-41c5-9f16-97d74d83046d" class="image"><a href="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/Untitled%202.png"><img style="width:681px" src="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/Untitled%202.png"/></a></figure><ul id="27a65fd7-c2e9-4020-b212-85fcec738397" class="toggle"><li><details open=""><summary>SQL 쿼리</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="62acc125-a6ee-4f31-a688-30aaaf9f357f" class="code"><code class="language-SQL">WITH records_preprocessed AS (
+SELECT r.CustomerId
+	 , DATE_FORMAT(r.OrderDate, &#x27;%Y-%m-01&#x27;) order_month
+     , DATE_FORMAT(c.first_order_date, &#x27;%Y-%m-01&#x27;) first_order_month
+FROM records r
+	 INNER JOIN customer_stats c ON r.CustomerId = c.CustomerId
+)
+
+SELECT first_order_month
+		 , COUNT(DISTINCT CustomerId) &#x27;Month 0&#x27;
+     , COUNT(DISTINCT CASE WHEN order_month = DATE_ADD(first_order_month, INTERVAL 1 MONTH) OR order_month = DATE_ADD(first_order_month, INTERVAL 2 MONTH)
+			 THEN CustomerId END) &#x27;Month 2&#x27;
+     , COUNT(DISTINCT CASE WHEN order_month = DATE_ADD(first_order_month, INTERVAL 3 MONTH) OR order_month = DATE_ADD(first_order_month, INTERVAL 4 MONTH)
+			 THEN CustomerId END) &#x27;Month 4&#x27;
+     , COUNT(DISTINCT CASE WHEN order_month = DATE_ADD(first_order_month, INTERVAL 5 MONTH) OR order_month = DATE_ADD(first_order_month, INTERVAL 6 MONTH)
+			 THEN CustomerId END) &#x27;Month 6&#x27;
+     , COUNT(DISTINCT CASE WHEN order_month = DATE_ADD(first_order_month, INTERVAL 7 MONTH) OR order_month = DATE_ADD(first_order_month, INTERVAL 8 MONTH)
+			 THEN CustomerId END) &#x27;Month 8&#x27;
+     , COUNT(DISTINCT CASE WHEN order_month = DATE_ADD(first_order_month, INTERVAL 9 MONTH) OR order_month = DATE_ADD(first_order_month, INTERVAL 10 MONTH)
+			 THEN CustomerId END) &#x27;Month 10&#x27;
+     , COUNT(DISTINCT CASE WHEN order_month = DATE_ADD(first_order_month, INTERVAL 11 MONTH) OR order_month = DATE_ADD(first_order_month, INTERVAL 12 MONTH)
+			 THEN CustomerId END) &#x27;Month 12&#x27;
+FROM records_preprocessed
+GROUP BY first_order_month
+ORDER BY first_order_month;</code></pre></details></li></ul><h1 id="370b2033-516c-4b4b-935b-e009e61799bf" class="">3️⃣ 제안</h1><p id="75c07039-1d67-4100-b338-9adcb372a370" class="">개선 사항 1. 점점 감소하는 첫 구매 고객 수를 늘릴 필요가 있습니다.<div class="indented"><figure id="057db686-b4bd-4938-b8b9-98b16a90b625" class="image" style="text-align:center"><a href="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EC%259B%2594%25EB%25B3%2584_%25EC%25B2%25AB_%25EA%25B5%25AC%25EB%25A7%25A4_%25EA%25B3%25A0%25EA%25B0%259D_%25EC%2588%2598.png"><img style="width:432px" src="%F0%9F%8F%AC%20E-commerce%20%E1%84%85%E1%85%B5%E1%84%90%E1%85%A6%E1%86%AB%E1%84%89%E1%85%A7%E1%86%AB%20%E1%84%87%E1%85%AE%E1%86%AB%E1%84%89%E1%85%A5%E1%86%A8%2096580757189845629c7c224f6c7c6733/%25EC%259B%2594%25EB%25B3%2584_%25EC%25B2%25AB_%25EA%25B5%25AC%25EB%25A7%25A4_%25EA%25B3%25A0%25EA%25B0%259D_%25EC%2588%2598.png"/></a></figure></div></p><p id="9df374a4-1752-4ad4-92c5-946e82c88a9b" class=""><strong><mark class="highlight-pink"><code>Action Plan1 - 기존 고객을 대상으로 친구 추천 이벤트 추가 </code></mark></strong></p><ul id="c693632c-457b-4aba-9ee6-a6769b5e1c60" class="bulleted-list"><li style="list-style-type:disc">기존 고객을 대상으로 새로운 친구 추천 이벤트를 추가하여 추천한 친구가 물건을 구매할 경우 추천한 고객과 추천 받은 고객 모두 포인트 적립 혹은 배송비 무료 중 한 가지를 선택할 수 있도록 합니다. 이를 통해 신규 가입으로 그치는 것이 아니라 첫 구매를 유도함으로써 서비스를 지속적으로 이용할 잠재적 고객을 늘리는 것이 중요하다 생각합니다.</li></ul><p id="ff892fae-5016-46a3-a633-7f0a54688072" class=""><code><mark class="highlight-pink"><strong>Action Plan2 - 첫 구매 혜택 프로모션 진행</strong></mark></code></p><ul id="58bdbd7d-7242-49e4-9dd9-f2f1ade48171" class="bulleted-list"><li style="list-style-type:disc">우리 서비스를 방문하여 첫 구매하는 고객을 대상으로 선물 포장 서비스, 첫 구매 할인 이벤트를 진행하고 이를 홍보하여 첫 구매 고객이 유입될 수 있도록 합니다.</li></ul><p id="c022f2ab-523f-4246-acfe-ded88ccbe429" class="">
+</p><p id="71de144f-3b9f-44c3-9ca9-3a2a547618f3" class="">개선 사항 2. 첫 구매 이후 2개월 이내의 유지율을 높여야 합니다.</p><p id="6b9a4230-1f3f-42fe-90a8-9e50c593b500" class=""><mark class="highlight-pink"><code><strong>Action Plan - 첫 구매 이후 2개월이 경과하기 전 푸시 알림을 통한 구매 유도</strong></code></mark></p><ul id="1f552c42-41c1-4abf-a5f0-869872a6e86e" class="bulleted-list"><li style="list-style-type:disc">첫 구매 이후 구매 기록이 없는 고객을 대상으로 2개월 경과 이전 푸시 알림을 통해 다시 우리 서비스에 방문할 수 있도록 유도하고, 푸시 알림에 평소 검색했던 제품을 추천하거나 깜짝 할인 쿠폰을 제공하여 구매를 유도합니다.</li></ul><p id="74838036-0a11-410a-8d48-41de88fe1053" class="">
+</p><p id="3a4aed6b-e3e7-4bfb-85b9-33150ede8e99" class="">개선 사항 3. 8월에 구매 고객 수를 늘릴 수 있는 방안을 모색해야 합니다.</p><p id="f233d220-045a-489b-ac41-375bdf8457f5" class=""><mark class="highlight-pink"><code><strong>Action Plan - 여름 방학 기념 세일</strong></code></mark></p><ul id="e1b2d788-2fc4-4514-932c-595755377bb6" class="bulleted-list"><li style="list-style-type:disc">학교마다 다르기는 하지만 8월은 영국의 여름 방학 기간이기도 합니다. 여름 관련 제품, 휴가 관련 제품, 방학 기간에 가족들과 즐길 수 있는 체험 활동 관련 제품(베이킹, 공예 등)의 할인을 통해 8월에 구매자 수를 늘리고자 합니다.</li></ul><p id="3eb2162e-c6b6-441c-ae85-4d64ea148c9c" class="">
+</p><p id="ca0b5898-427c-414e-aa5e-fbe8ef58d01c" class="">개선 사항 4. 기간이 더 지날수록 유지율의 감소 경사가 낮아지도록 관리해야 합니다.</p><p id="a07529e6-558f-4a17-8bc9-e6b45c64bdaa" class=""><mark class="highlight-pink"><code><strong>Action Plan - 캘린더 연동을 통한 기념일, 생일 알림 및 선물 추천</strong></code></mark></p><ul id="96a040b4-b53b-4f6b-8aa3-05c12c7ec0f0" class="bulleted-list"><li style="list-style-type:disc">초반 유지율을 높이는 것과 더불어 앞으로 서비스의 유지율이 최대한 완만하게 유지될 수 있도록 꾸준히 관리해야 합니다. 캘린더 연동에 동의한 고객에 한해서 캘린더에 저장되어 있는 가족, 친구의 생일 및 기념일에 맞추어 알림 및 선물을 추천합니다. 캘린더 연동을 하지 않더라도 공통적으로 챙기는 기념일(새해, 어머니의 날, 아버지의 날 등등)에 알림을 통해 선물을 추천하여 방문 및 구매를 유도합니다.</li></ul><h1 id="dd09351c-618a-44aa-8719-8a06df7f2819" class="">4️⃣ 데이터 설명</h1><p id="a8bf24f0-84c9-48d8-8565-eca74a611049" class="">데이터 출처 : Kaggle <a href="https://www.kaggle.com/datasets/gabrielramos87/an-online-shop-business"><strong><strong>E-commerce Business Transaction</strong></strong></a></p><p id="e2c48343-9c86-4d89-91c9-8e520f13f2b0" class="">데이터 수집 기간 : 2018년 12월 1일 ~ 2019년 12월 9일</p><ul id="15f81559-6355-4530-8923-92d248821d84" class="toggle"><li><details open=""><summary>1. records</summary><table id="fb1fbf96-2477-4ba3-8d4f-e1aa6d646e4e" class="simple-table"><thead class="simple-table-header"><tr id="d89e8855-f481-4da4-9b1c-b7b3a79b7e73"><th id="p@]u" class="simple-table-header-color simple-table-header">컬럼명</th><th id="Ty?V" class="simple-table-header-color simple-table-header">내용</th></tr></thead><tbody><tr id="73efa2f5-e08a-43d7-9c08-945433822ec7"><td id="p@]u" class=""><code>OrderId</code></td><td id="Ty?V" class="">주문 번호</td></tr><tr id="f5ccfb07-96e2-4349-bd61-4753b567c082"><td id="p@]u" class=""><code>OrderDate</code> </td><td id="Ty?V" class="">주문 날짜</td></tr><tr id="0dab2c9c-3492-46fc-8519-311fefd346f7"><td id="p@]u" class=""><code>ProductNo</code></td><td id="Ty?V" class="">제품 번호</td></tr><tr id="13145017-8380-4e43-85f2-600a610e3a01"><td id="p@]u" class=""><code>ProductName</code></td><td id="Ty?V" class="">제품명</td></tr><tr id="21190ffc-a68f-43f6-ac5a-46519f3b652e"><td id="p@]u" class=""><code>Price</code></td><td id="Ty?V" class="">제품 한 개의 가격 (파운드)</td></tr><tr id="6dcc240c-6bad-4222-95cc-9d632db0d2eb"><td id="p@]u" class=""><code>Quantity</code></td><td id="Ty?V" class="">구매 수량</td></tr><tr id="c933f830-8c69-40db-9188-1e1dfe621f43"><td id="p@]u" class=""><code>CustomerId</code></td><td id="Ty?V" class="">고객의 고유 번호</td></tr><tr id="5dcbe3d3-9141-4b8b-a2d4-7c9c55857db3"><td id="p@]u" class=""><code>Country</code></td><td id="Ty?V" class="">고객이 거주하는 국가</td></tr></tbody></table></details></li></ul><ul id="251a292a-80b9-4003-91d0-768b2f7a79f4" class="toggle"><li><details open=""><summary>2. customer_stats</summary><p id="19c152a2-7baa-4411-941b-56f7eccf36d9" class="">→ 리텐션 분석을 위해 records를 요약한 테이블</p><table id="752caa86-edc7-43cf-8108-a3dce7376840" class="simple-table"><thead class="simple-table-header"><tr id="26c78038-224b-4468-946d-713bfa48ed82"><th id="qbaH" class="simple-table-header-color simple-table-header">컬럼명</th><th id="&lt;Sn:" class="simple-table-header-color simple-table-header">내용</th></tr></thead><tbody><tr id="6c6d2d4c-fb12-4e0e-8469-2fbc341390b5"><td id="qbaH" class=""><code>CustomerID</code></td><td id="&lt;Sn:" class="">고객의 고유 번호</td></tr><tr id="84f19a86-683c-4129-8b53-89b3f3a97869"><td id="qbaH" class=""><code>first_order_date</code></td><td id="&lt;Sn:" class="">첫 주문일</td></tr><tr id="55b391fb-3e6a-4113-9b18-3345537804aa"><td id="qbaH" class=""><code>last_order_date</code></td><td id="&lt;Sn:" class="">마지막 주문일</td></tr><tr id="df380b0f-3a2e-41f0-92e3-13e50ca6aaa2"><td id="qbaH" class=""><code>cnt_orders</code></td><td id="&lt;Sn:" class="">주문 횟수</td></tr><tr id="b9574273-6efd-4771-9670-dd732f65c6bb"><td id="qbaH" class=""><code>sum_sales</code></td><td id="&lt;Sn:" class="">총 구매금액 합계(파운드)</td></tr></tbody></table><ul id="a6c1aca1-b807-40c2-813d-210597fcdd1c" class="toggle"><li><details open=""><summary>SQL 쿼리</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bdb33bb3-02e5-4479-8d44-62b064b96cff" class="code"><code class="language-SQL">SELECT DISTINCT CustomerId
+	   , MIN(Date) first_order_date
+	   , MAX(Date) last_order_date
+     , COUNT(DISTINCT OrderId) cnt_orders
+     , ROUND(SUM(Price * Quantity), 2) sum_sales
+FROM records
+GROUP BY CustomerId</code></pre></details></li></ul></details></li></ul><p id="a02693ca-c56a-463b-9d5d-7b5449ccb465" class="">
+</p><h1 id="54bc4476-39c8-43d6-8f65-3ed9745ca1ed" class="">5️⃣ 회고</h1><ul id="3f56b024-8d7c-460c-a150-dbce4394da74" class="bulleted-list"><li style="list-style-type:disc">Liked(좋았던 점) - 처음 수업으로 배웠을 때에는 리텐션 차트 분석에 대해 헷갈렸는데 프로젝트를 진행하면서 직접 해보니 헷갈렸던 부분이 해소되었고, 리텐션 분석에 대해 더 깊이 공부해볼 수 있는 시간이 되었습니다.</li></ul><ul id="6c0662c2-78d8-4056-bf8c-f82d0e460986" class="bulleted-list"><li style="list-style-type:disc">Lacked(아쉬웠던 점) - 제품을 분류하는 카테고리가 존재하지 않아 카테고리별 구매 주기를 구할 수 없는 점이 아쉬웠습니다.</li></ul><ul id="9707ca43-8c05-412b-923c-a548351c4070" class="bulleted-list"><li style="list-style-type:disc">Learned(배운 점) - 리텐션 분석에 대한 이해 뿐 아니라 프로젝트를 진행할 때 목적을 명확히 설정하는 것이 중요하다는 것을 다시금 느낄 수 있었습니다. </li></ul><ul id="f4e9749f-bec5-4d8c-a91f-ee5fd609c12d" class="bulleted-list"><li style="list-style-type:disc">Longed for(앞으로 바라는 점) - 범위 리텐션 뿐만 아니라 클래식 리텐션, 롤링 리텐션이 어떻게 분석에 적용이 되고, 실제로 어떤 리텐션을 적용하는 것이 좋은지 판단할 수 있는 역량을 기르도록 노력하겠습니다.</li></ul><p id="4ac7ab67-f68f-4438-b1c9-dd24e4350033" class="">
+</p><hr id="b6d2eef2-c5b8-4654-9070-9b444599901d"/><p id="2f75aad1-e23d-4cc5-a7a6-a9499dec2c70" class="">¹⁾출처 : <strong>Mixpanel(이벤트 분석 서비스 회사) </strong><a href="https://mixpanel.com/blog/whats-a-good-retention-rate/">User retention rate for mobile apps and websites</a></p><p id="4bfe36f9-f023-4dee-9b02-440e0af9728a" class="">
+</p><p id="214b5a28-b3e0-4eff-9d4a-7680f068ebac" class="">
+</p><blockquote id="46a94537-904c-41c3-a8ab-651c2c3f91a0" class="">본 내용은 데이터리안 &#x27;SQL 데이터 분석 캠프 실전반&#x27; 을 수강하며 작성한 내용입니다.</blockquote><p id="9928abe4-9e95-4d25-b7e5-604f6c572e89" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
