@@ -1,4 +1,4 @@
-# [전자제품 이커머스 사업의 현황 확인 및 수익 향상 방안 제안](https://github.com/videpurple/portfolio/blob/main/%EC%82%AC%EC%97%85%EB%B6%84%EC%84%9D/Notebook/E_commerce_EDA_team2_%EC%9D%B4%EB%B3%B4%EB%9D%BC.ipynb)
+# [전자제품 이커머스 사업의 현황 확인 및 수익 향상 방안 제안](https://github.com/videpurple/portfolio/blob/main/%EC%82%AC%EC%97%85%EB%B6%84%EC%84%9D/Notebook/%ED%8C%80%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EC%82%AC%EC%97%85%EB%B6%84%EC%84%9D_%EC%9D%B4%EB%B3%B4%EB%9D%BC.ipynb)
 ---
 (제목을 누르시거나 옆의 버튼을 누르면 상세 페이지로 이동할 수 있습니다.)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/videpurple/portfolio/blob/main/%EC%82%AC%EC%97%85%EB%B6%84%EC%84%9D/Notebook/E_commerce_EDA_team2_%EC%9D%B4%EB%B3%B4%EB%9D%BC.ipynb)
