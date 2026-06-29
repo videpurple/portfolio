@@ -26,7 +26,7 @@ Skills: Google Sheets, PostgreSQL, Power BI
 - 퍼널 분석은 이용자들의 서비스 최초 유입부터 최종적인 핵심 기능을 사용하기까지 여정을 단계를 나누어서 살펴보는 분석 기법입니다. 각 단계를 통과할 때마다 이용자 수가 줄어들게 되는데 그 모습이 깔때기(Funnel) 모양과 비슷하여 퍼널 분석이라고 합니다. 각각의 단계로 넘어가는 것을 전환(Conversion)이라고 부르고 그 비율은 전환율(Conversion rate)이라 합니다.
 - 퍼널 단계 설정 : Yammer를 이용하기 위해서는 아래와 같은 단계를 거쳐야 합니다. 서비스를 이용하려면 먼저 회원 가입 절차를 거쳐야 하기 때문에 회원 가입하기 ~ 회원 가입 완료 단계의 전환율을 알아보고자 합니다.
 
-![퍼널단계표시.png](퍼널단계표시.png)
+![퍼널단계표시.png](./시각화자료/퍼널단계표시.png)
 
 1. 회원 가입하기(create_user) 
     - 회원 가입을 위한 가입 페이지 이동
@@ -52,7 +52,7 @@ Skills: Google Sheets, PostgreSQL, Power BI
 |:-|
 
 
-![Untitled](회원가입단계별전환율.png)
+![Untitled](./시각화자료/회원가입단계별전환율.png)
 
 1. 각 단계로 이동한 이용자 수
 
@@ -147,13 +147,13 @@ Skills: Google Sheets, PostgreSQL, Power BI
 | tablet | 0.5992 | 0.8896 | 0.9539 | 0.5085 |
 
 <p>
-     <img src = "./단계별전환율노트북.png" width = "45%"> &nbsp;
-     <img src = "./단계별전환율폰.png" width = "45%">
+     <img src = "./시각화자료/단계별전환율노트북.png" width = "45%"> &nbsp;
+     <img src = "./시각화자료/단계별전환율폰.png" width = "45%">
 </p>
 
 <p>
-     <img src = "./단계별전환율pc.png" width = "45%"> &nbsp;
-     <img src = "./단계별전환율태블릿.png" width = "45%">
+     <img src = "./시각화자료/단계별전환율pc.png" width = "45%"> &nbsp;
+     <img src = "./시각화자료/단계별전환율태블릿.png" width = "45%">
 </p>
 
 - 각 기기별 회원 가입 단계 전환율은 큰 차이를 보이지 않습니다.
@@ -374,7 +374,7 @@ Skills: Google Sheets, PostgreSQL, Power BI
      </details>
         
 
-![회원 가입 완료 후 로그인 시 이용한 기기 비율.png](회원가입후로그인한기기.png)
+![회원 가입 완료 후 로그인 시 이용한 기기 비율.png](./시각화자료/회원가입후로그인한기기.png)
 
 <br>
 
@@ -409,6 +409,7 @@ Skills: Google Sheets, PostgreSQL, Power BI
 
 ---
 
+<br>
 <br>
 
 > 본 내용은 데이터리안 'SQL 데이터 분석 캠프 실전반' 을 수강하며 작성한 내용입니다.
