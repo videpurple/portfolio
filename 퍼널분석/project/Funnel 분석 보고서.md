@@ -5,7 +5,7 @@
 작성자: Bora Lee  
 태그: 퍼널분석, 프로젝트  
 Skills: Google Sheets, PostgreSQL, Power BI  
-기간: July 31, 2023 → August 10, 2023  
+기간: 2023/07/31 → 2023/08/10  
 기여도: 100%
 
 ---
